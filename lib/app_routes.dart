@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled/business_logic/characters_cubit.dart';
 import 'package:untitled/data/repository/characters_repository.dart';
@@ -9,10 +7,11 @@ import 'package:untitled/presentation/screens/characters_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'constants/strings.dart';
+import 'data/models/characters.dart';
 
 class AppRouter {
   late CharactersRepository charactersRepository;
-  late CharactersCubit charactersCubit;
+   late CharactersCubit charactersCubit;
   AppRouter() {
     charactersRepository = CharactersRepository(CharactersWebServices());
     charactersCubit = CharactersCubit(charactersRepository);
@@ -29,7 +28,8 @@ class AppRouter {
           ),
         );
       case characterDetailsScreen:
-        return MaterialPageRoute(builder: (_) => CharacterDetailsScreen());
+        final character = settings.arguments as Character;
+        return MaterialPageRoute(builder: (_) => CharacterDetailsScreen(character:character));
     }
   }
 }

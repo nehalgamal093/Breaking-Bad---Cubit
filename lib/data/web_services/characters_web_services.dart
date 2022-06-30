@@ -13,7 +13,7 @@ class CharactersWebServices {
     );
     dio = Dio(options);
   }
-  Future<List<dynamic>> getAllCharacters() async {
+  Future <List<dynamic>> getAllCharacters() async {
     // you can make <List<Characters>> or you can make <List<dynamic>>
     try {
       Response response =
